@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Songs from './Songs'
+import Songs from './Songs';
+import AllAlbums from './AllAlbums';
+import { Link, Route } from 'react-router-dom';
 
 export default class SingleArtist extends Component{
 	constructor(){
@@ -29,18 +31,26 @@ export default class SingleArtist extends Component{
 		})
 	}
 
-	render(){
-		const {artist, songs, albums} = this.state;
-		console.log("render = ", artist, songs, albums)
-		return (
-			<div>
-			  <h3>{artist.name}</h3>
-			  <h4>ALBUMS</h4>
-			  <h4>SONGS</h4>
-			  <Songs songs={songs} />
-			</div>
-		);
-	}
+	render () {
+
+  const {artist, songs, albums} = this.state; 
+  const albumsPath = `/artists/${artist.id}/albums`;
+  const songsPath = `/artists/${artist.id}/songs`
+
+  return (
+    <div>
+      <h3>{ artist.name }</h3>
+      <ul className="nav nav-tabs">
+        <li><Link to={albumsPath}>ALBUMS</Link></li>
+        <li><Link to={songsPath}>SONGS</Link></li>
+      </ul>
+
+      <Route  path={albumsPath} render={() => (<AllAlbums albums={albums}/>)}/>
+      <Route  path={songsPath} render={() => (<Songs songs={songs}/>)}/>
+
+    </div>
+  );
+}
 
 
 }
