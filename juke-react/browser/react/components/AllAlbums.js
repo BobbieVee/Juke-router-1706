@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 export default class AllAlbums extends Component {
   render () {
     const albums = this.props.albums;
-    console.log('albums = ', this.props)
     const selectAlbum = this.props.selectAlbum;
     return (
       <div>

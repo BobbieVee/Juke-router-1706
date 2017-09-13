@@ -32,7 +32,6 @@ export default class SingleArtist extends Component{
 	}
 
 	render () {
-
   const {artist, songs, albums} = this.state; 
   const albumsPath = `/artists/${artist.id}/albums`;
   const songsPath = `/artists/${artist.id}/songs`
